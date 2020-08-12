@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationService", "LocationService\LocationService.csproj", "{EF72733F-CBB8-4B99-BB18-5BF45EAA0824}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF72733F-CBB8-4B99-BB18-5BF45EAA0824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF72733F-CBB8-4B99-BB18-5BF45EAA0824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF72733F-CBB8-4B99-BB18-5BF45EAA0824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF72733F-CBB8-4B99-BB18-5BF45EAA0824}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FD6A83C-48A5-4CEE-BA41-983306B18C7B}
+	EndGlobalSection
+EndGlobal
