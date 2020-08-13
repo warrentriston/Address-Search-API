@@ -47,7 +47,7 @@ namespace LocationService.Models
             dbConnection.Open();
             List<Location> addresses = new List<Location>();
             MySqlCommand cmdGetLocation = dbConnection.CreateCommand();
-            cmdGetLocation.CommandText = $"Select * from tbl_locatiodn Where Address Like '%{searchText}%' or State Like '%{searchText}%' or City Like '%{searchText}%' ORDER BY Address";
+            cmdGetLocation.CommandText = $"Select * from tbl_location Where Address Like '%{searchText}%' or State Like '%{searchText}%' or City Like '%{searchText}%' ORDER BY Address";
             MySqlDataReader drGetLocation = cmdGetLocation.ExecuteReader();
             while(drGetLocation.Read())
             {
