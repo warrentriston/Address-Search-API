@@ -44,7 +44,7 @@ namespace LocationService.Controllers
                     {
                         response.responseStatus = rmLocationService.GetString("successStatus");
                         response.message = rmLocationService.GetString("noRecordsFound");
-                        var addressedFrequencySorted = databaseOperations.getLocation(searchText).OrderByDescending(x => Regex.Matches(x.address, searchText).Count * 1 + Regex.Matches(x.city, searchText).Count * 2 + Regex.Matches(x.state, searchText).Count * 3);
+                        var addressedFrequencySorted = databaseOperations.getLocation(searchText).OrderByDescending(location => Regex.Matches(location.address, searchText).Count * 1 + Regex.Matches(location.city, searchText).Count * 2 + Regex.Matches(location.state, searchText).Count * 3);
                         return addressedFrequencySorted.Any() ? ControllerContext.Request.CreateResponse(HttpStatusCode.OK, addressedFrequencySorted) : ControllerContext.Request.CreateResponse(HttpStatusCode.OK, response); ;
                     }
                     else
