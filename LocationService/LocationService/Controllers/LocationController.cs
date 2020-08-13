@@ -1,4 +1,5 @@
 ﻿using LocationService.Entities;
+using LocationService.Interfaces;
 using LocationService.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -15,7 +16,7 @@ namespace LocationService.Controllers
     public class LocationController : ApiController
     {
         ResponseMessage response = new ResponseMessage();
-
+        IDataBaseAccess databaseOperations = new DatabaseOperations();
         /// <summary>
         /// This method will retrieve records from the database based on filter text
         /// </summary>
@@ -33,14 +34,14 @@ namespace LocationService.Controllers
                     {
                         response.responseStatus = "Success";
                         response.message = "No records found";
-                        List<Location> addressedAlphabeticalSorted = DatabaseOperations.getLocation(searchText);
+                        List<Location> addressedAlphabeticalSorted = databaseOperations.getLocation(searchText);
                         return addressedAlphabeticalSorted.Any() ? ControllerContext.Request.CreateResponse(HttpStatusCode.OK, addressedAlphabeticalSorted) : ControllerContext.Request.CreateResponse(HttpStatusCode.OK, response); ;
                     }
                     else if (sortBy.ToLower().Equals("frequency"))
                     {
                         response.responseStatus = "Success";
                         response.message = "No records found";
-                        var addressedFrequencySorted = DatabaseOperations.getLocation(searchText).OrderByDescending(x => Regex.Matches(x.address, searchText).Count * 1 + Regex.Matches(x.city, searchText).Count * 2 + Regex.Matches(x.state, searchText).Count * 3);
+                        var addressedFrequencySorted = databaseOperations.getLocation(searchText).OrderByDescending(x => Regex.Matches(x.address, searchText).Count * 1 + Regex.Matches(x.city, searchText).Count * 2 + Regex.Matches(x.state, searchText).Count * 3);
                         return addressedFrequencySorted.Any() ? ControllerContext.Request.CreateResponse(HttpStatusCode.OK, addressedFrequencySorted) : ControllerContext.Request.CreateResponse(HttpStatusCode.OK, response); ;
                     }
                     else
@@ -75,7 +76,7 @@ namespace LocationService.Controllers
             response.action = "Insert Into Database";
             try
             {
-                DatabaseOperations.setLocation(addresses);
+                databaseOperations.setLocation(addresses);
                 response.responseStatus = "Success";
                 response.message = "Locations added successfully ";
                 return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, response);

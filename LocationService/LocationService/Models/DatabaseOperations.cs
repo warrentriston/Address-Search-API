@@ -1,4 +1,5 @@
 ﻿using LocationService.Entities;
+using LocationService.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace LocationService.Models
 {
-    public class DatabaseOperations
+    public class DatabaseOperations: IDataBaseAccess
     {
         static MySqlConnection dbConnection = new MySqlConnection(ConfigurationManager.AppSettings["dbConnection"]);
 
@@ -17,7 +18,7 @@ namespace LocationService.Models
         /// </summary>
         /// <param name="addresses">List of locations</param>
         /// <returns></returns>
-        public static void setLocation(List <Location> addresses)
+        public void setLocation(List <Location> addresses)
         {
             dbConnection.Open();
             foreach (Location location in addresses)
@@ -41,7 +42,7 @@ namespace LocationService.Models
         /// </summary>
         /// <param name="searchText">Text based on which the records will be filtered</param>
         /// <returns></returns>
-        public static List<Location> getLocation(string searchText)
+        public List<Location> getLocation(string searchText)
         {
             dbConnection.Open();
             List<Location> addresses = new List<Location>();
